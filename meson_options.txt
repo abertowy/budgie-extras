@@ -5,6 +5,7 @@ option('build-wswitcher', type: 'boolean', value: false, description: 'Build wor
 option('build-hotcorners', type: 'boolean', value: false, description: 'Build hotcorners applet')
 option('build-quicknote', type: 'boolean', value: false, description: 'Build quicknote applet')
 option('build-showtime', type: 'boolean', value: false, description: 'Build Showtime applet')
+option('build-testtime', type: 'boolean', value: false, description: 'Build testtime applet')
 option('build-countdown', type: 'boolean', value: false, description: 'Build Countdown applet')
 option('build-keyboard-autoswitch', type: 'boolean', value: false, description: 'Build Keyboard autoswitch applet')
 option('build-rotation-lock', type: 'boolean', value: false, description: 'Build screen rotation lock applet')

@@ -158,6 +158,11 @@ if for_wayland == false and (build_recommended == true or build_showtime == true
 	subdir('budgie-showtime')
 endif
 
+build_testtime = get_option('build-testtime')
+if for_wayland == false and (build_recommended == true or build_testtime == true)
+	subdir('budgie-testtime')
+endif
+
 build_countdown = get_option('build-countdown')
 if build_recommended == true or build_countdown == true
 	subdir('budgie-countdown')
