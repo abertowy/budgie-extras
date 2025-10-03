@@ -224,8 +224,8 @@ namespace BudgieTestTimeApplet {
             // test font settings
             var testbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
             this.attach(testbox, 0, 7, 10, 1);
-            var timelabel = new Gtk.Label(_("Test: "));
-            testbox.pack_start(timelabel, false, false, 0);
+            var testlabel = new Gtk.Label(_("Test: "));
+            testbox.pack_start(testlabel, false, false, 0);
             testfontbutton = new FontButton();
             testbox.pack_start(testfontbutton, false, false, 0);
             testcolor = new Gtk.ColorButton();
