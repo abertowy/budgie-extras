@@ -198,16 +198,16 @@ namespace  TestTime {
             testlabel = new Label("");
             timelabel = new Label("");
             seriallabel = new Label("");
-            var image_01 = new Gtk.Image.from_file("/usr/share/pixmaps/01_portal_on.png");
-            var image_02 = new Gtk.Image.from_file("/usr/share/pixmaps/02_portal.png");
-            var image_03 = new Gtk.Image.from_file("/usr/share/pixmaps/03_portal_on.png");
-            var image_04 = new Gtk.Image.from_file("/usr/share/pixmaps/04_portal.png");
-            var image_05 = new Gtk.Image.from_file("/usr/share/pixmaps/05_portal_on.png");
-            var image_06 = new Gtk.Image.from_file("/usr/share/pixmaps/06_portal.png");
-            var image_07 = new Gtk.Image.from_file("/usr/share/pixmaps/07_portal_on.png");
-            var image_08 = new Gtk.Image.from_file("/usr/share/pixmaps/08_portal.png");
-            var image_09 = new Gtk.Image.from_file("/usr/share/pixmaps/09_portal_on.png");
-            var image_10 = new Gtk.Image.from_file("/usr/share/pixmaps/10_portal.png");
+            var image_01 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/01_portal_on.png");
+            var image_02 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/02_portal.png");
+            var image_03 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/03_portal_on.png");
+            var image_04 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/04_portal.png");
+            var image_05 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/05_portal_on.png");
+            var image_06 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/06_portal.png");
+            var image_07 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/07_portal_on.png");
+            var image_08 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/08_portal.png");
+            var image_09 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/09_portal_on.png");
+            var image_10 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/10_portal.png");
             // position
             maingrid.attach(testlabel, 0, 0, 10, 1);
             maingrid.attach(timelabel, 0, 1, 10, 1);
