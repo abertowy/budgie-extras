@@ -2,6 +2,7 @@ using Gtk;
 using Math;
 using Cairo;
 using Wnck;
+using GLib;
 
 
 /*
@@ -163,7 +164,7 @@ namespace  TestTime {
 
         public TimeWindow (string uuid) {
             var random = new GLib.Random();
-            test_chamber = "Test chamber #" + String.printf("%0*d", 3, random.int_range(1, 501));
+            test_chamber = "Test chamber #" + "%03d".printf(random.int_range(1, 501));
             serial = "SERIAL NO " + uuid;
             GLib.Timeout.add_seconds(1, ()=> {
                 watchapplet(uuid);
