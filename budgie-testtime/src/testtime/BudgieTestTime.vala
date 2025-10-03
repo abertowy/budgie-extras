@@ -216,21 +216,27 @@ namespace BudgieTestTimeApplet {
             anchorbuttons[
                 get_stringindex(anchors, curr_anchor)
             ].set_active(true);
-            // time font settings -> boxed!!
-            var time_header = new Gtk.Label(_("Font, size & color"));
-            time_header.xalign = 0;
-            this.attach(time_header, 0, 6, 10, 1);
+            // font settings -> boxed!!
+            var test_header = new Gtk.Label(_("Font, size & color"));
+            test_header.xalign = 0;
+            this.attach(test_header, 0, 6, 10, 1);
+            // test font settings
+            var testbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+            this.attach(testbox, 0, 7, 10, 1);
+            var timelabel = new Gtk.Label(_("Test: "));
+            testbox.pack_start(timelabel, false, false, 0);
+            testfontbutton = new FontButton();
+            testbox.pack_start(testfontbutton, false, false, 0);
+            testcolor = new Gtk.ColorButton();
+            testbox.pack_start(testcolor, false, false, 0);
+            // time font settings
             var timebox = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-            this.attach(timebox, 0, 7, 10, 1);
+            this.attach(timebox, 0, 8, 10, 1);
             var timelabel = new Gtk.Label(_("Time: "));
             timebox.pack_start(timelabel, false, false, 0);
             timefontbutton = new FontButton();
             timebox.pack_start(timefontbutton, false, false, 0);
-            testcolor = new Gtk.ColorButton();
-            timebox.pack_start(testcolor, false, false, 0);
-            var spacelabel3 = new Gtk.Label("");
-            this.attach(spacelabel3, 1, 8, 1, 1);
-            // date font settings
+            // serial font settings
             var serialbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
             this.attach(serialbox, 0, 9, 10, 1);
             var seriallabel = new Gtk.Label(_("Serial: "));
@@ -242,13 +248,13 @@ namespace BudgieTestTimeApplet {
             // miscellaneous section
             var general_header = new Gtk.Label(_("Miscellaneous"));
             general_header.xalign = 0;
-            this.attach(general_header, 0, 18, 10, 1);
+            this.attach(general_header, 0, 11, 10, 1);
             leftalign = new Gtk.CheckButton.with_label(_("Left align text"));
-            this.attach(leftalign, 0, 19, 10, 1);
+            this.attach(leftalign, 0, 12, 10, 1);
             var spacelabel6 = new Gtk.Label("");
-            this.attach(spacelabel6, 1, 20, 1, 1);
+            this.attach(spacelabel6, 1, 13, 1, 1);
             Gtk.Box linespacebox = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 10);
-            this.attach(linespacebox, 0, 27, 3, 1);
+            this.attach(linespacebox, 0, 14, 3, 1);
             linespacing = new Gtk.SpinButton.with_range (-50, 50, 1);
             linespacebox.pack_start(linespacing, false, false, 0);
             spinlabel = new Gtk.Label(_("Linespacing"));
@@ -264,7 +270,7 @@ namespace BudgieTestTimeApplet {
             catch (Error e) {
             }
             Label[] boldones = {
-                time_header, general_header, position_header
+                test_header, general_header, position_header
             };
             foreach (Label l in boldones) {
                 l.get_style_context().add_class("st_header");
@@ -327,6 +333,7 @@ namespace BudgieTestTimeApplet {
             set_initialdrag();
             set_initialcolor(testcolor, "fontcolor");
             set_initialcheck(leftalign, "leftalign");
+            set_initialfont(testfontbutton, "testfont");
             set_initialfont(timefontbutton, "timefont");
             set_initialfont(serialfontbutton, "serialfont");
             set_initialautopos();
@@ -376,6 +383,9 @@ namespace BudgieTestTimeApplet {
             dragbutton.clicked.connect(toggle_drag);
             testcolor.color_set.connect (() => {
                 set_hexcolor(testcolor, "fontcolor");
+            });
+            testfontbutton.font_set.connect (() => {
+                set_newfont(testfontbutton, "testfont");
             });
             timefontbutton.font_set.connect (() => {
                 set_newfont(timefontbutton, "timefont");
@@ -486,6 +496,7 @@ namespace BudgieTestTimeApplet {
                 b.set_sensitive(active);
             }
             serialfontbutton.set_sensitive(active);
+            testfontbutton.set_sensitive(active);
             timefontbutton.set_sensitive(active);
             testcolor.set_sensitive(active);
             leftalign.set_sensitive(active);

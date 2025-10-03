@@ -34,8 +34,9 @@ namespace  TestTime {
 
     private string fontcolor;
     private int linespacing;
+    private Label testlabel;
     private Label timelabel;
-    private Label datelabel;
+    private Label seriallabel;
     GLib.Settings testtime_settings;
     bool subwindow;
     string win_name;
@@ -47,15 +48,20 @@ namespace  TestTime {
             // get font properties: color
             fontcolor = testtime_settings.get_string("fontcolor");
             // get font properties: font & size
+            string testprops = testtime_settings.get_string("testfont");
             string timeprops = testtime_settings.get_string("timefont");
             string dateprops = testtime_settings.get_string("serialfont");
             // set fonts
+            var testfont = new Pango.FontDescription().from_string(testprops);
             var timefont = new Pango.FontDescription().from_string(timeprops);
             var serialfont = new Pango.FontDescription().from_string(dateprops);
+            Pango.Context tt = testlabel.get_pango_context();
             Pango.Context t = timelabel.get_pango_context();
-            Pango.Context d = datelabel.get_pango_context();
+            Pango.Context d = seriallabel.get_pango_context();
+            tt.set_font_description(testfont);
             t.set_font_description(timefont);
             d.set_font_description(serialfont);
+            testlabel.set_margin_end (10);
             timelabel.set_margin_end (10);
             get_spacing(screen);
         }
@@ -68,12 +74,14 @@ namespace  TestTime {
             """.replace( "<bspac>", linespacing.to_string());
             // set / update time label
             Gtk.CssProvider css_provider = new Gtk.CssProvider();
+            testlabel.get_style_context().remove_class("linespacing");
             timelabel.get_style_context().remove_class("linespacing");
             try {
                 css_provider.load_from_data(linespacing_css);
                 Gtk.StyleContext.add_provider_for_screen(
                     screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER
                 );
+                testlabel.get_style_context().add_class("linespacing");
                 timelabel.get_style_context().add_class("linespacing");
             }
             catch (Error e) {
@@ -83,14 +91,19 @@ namespace  TestTime {
         }
 
         public void get_hexcolor(
-            string currtime, string currdate
+            string currtest, string currtime, string currdate
         ) {
+            testlabel.set_markup (
+                "<span foreground=\"" +
+                fontcolor + "\">" + currtest +
+                "</span>"
+            );
             timelabel.set_markup (
                 "<span foreground=\"" +
                 fontcolor + "\">" + currtime +
                 "</span>"
             );
-            datelabel.set_markup (
+            seriallabel.set_markup (
                 "<span foreground=\"" +
                 fontcolor + "\">" + currdate +
                 "</span>"
@@ -109,6 +122,8 @@ namespace  TestTime {
         bool bypass;
         GLib.Settings text_scaling;
         bool close_onnew;
+        string serial;
+        string test_chamber;
 
 
         private bool find_applet (string uuid, string[] applets) {
@@ -147,6 +162,9 @@ namespace  TestTime {
         }
 
         public TimeWindow (string uuid) {
+            var random = new GLib.Random();
+            test_chamber = String.printf("Test chamber #%0*d", 3, random.int_range(1, 501));
+            serial = $"SERIAL NO {uuid}";
             GLib.Timeout.add_seconds(1, ()=> {
                 watchapplet(uuid);
                 return false;
@@ -177,16 +195,18 @@ namespace  TestTime {
             this.destroy.connect(Gtk.main_quit);
             this.set_decorated(false);
             var maingrid = new Grid();
+            testlabel = new Label("");
             timelabel = new Label("");
-            datelabel = new Label("");
+            seriallabel = new Label("");
             // position
-            maingrid.attach(timelabel, 0, 0, 1, 1);
-            maingrid.attach(datelabel, 0, 1, 1, 1);
+            maingrid.attach(testlabel, 0, 0, 1, 1);
+            maingrid.attach(timelabel, 0, 1, 1, 1);
+            maingrid.attach(seriallabel, 0, 2, 1, 1);
             this.add(maingrid);
             string[] bind = {
                 "leftalign", "xposition",
                 "yposition", "linespacing", "fontcolor", "linespacing",
-                "timefont", "serialfont"
+                "testfont", "timefont", "serialfont"
             };
             foreach (string s in bind) {
                 testtime_settings.changed[s].connect(update_appearance);
@@ -359,11 +379,12 @@ namespace  TestTime {
             int mins = newtime.get_minute();
             int hrs = newtime.get_hour();
             int newhrs = hrs;
-            string add = "";
+            string add = " ago";
             string showmins = fix_mins(mins);
             // hrs to double digits
             string hrs_display = fix_mins(newhrs);
-            return @"$hrs_display:$showmins$add";
+            string prefix = "Testing initiated ";
+            return @"$prefix$hrs_display:$showmins$add";
         }
 
         private string get_dateformat () {
@@ -427,8 +448,9 @@ namespace  TestTime {
             // text align
             int al = 1;
             if (get_leftalign()) {al = 0;}
+            testlabel.xalign = al;
             timelabel.xalign = al;
-            datelabel.xalign = al;
+            seriallabel.xalign = al;
             // showdate
             linespacing = testtime_settings.get_int("linespacing");
             appearance.get_appearance(screen);
@@ -438,7 +460,7 @@ namespace  TestTime {
         private void update_interface () {
             var now = new DateTime.now_local();
             // string datestring = now.format(dateformat);
-            appearance.get_hexcolor(get_localtime(now), "SERIAL NO 42212500912911421");
+            appearance.get_hexcolor(test_chamber, get_localtime(now), serial);
         }
 
         private int convert_remainder_topositive (double subj, double rem) {

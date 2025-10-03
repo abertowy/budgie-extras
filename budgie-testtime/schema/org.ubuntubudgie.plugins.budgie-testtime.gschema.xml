@@ -23,10 +23,15 @@
             <description>The font and fontstyle, showing on the desktop's date representation</description>
             <default>"Sans 20"</default>
         </key>
-        <key type="s" name="timefont">
+        <key type="s" name="testfont">
             <summary>Font and fontstyle for desktop time</summary>
             <description>The font and fontstyle, showing on the desktop's time representation</description>
             <default>"Sans 50"</default>
+        </key>
+        <key type="s" name="timefont">
+            <summary>Font and fontstyle for desktop time</summary>
+            <description>The font and fontstyle, showing on the desktop's time representation</description>
+            <default>"Sans 30"</default>
         </key>
         <key enum="org.ubuntubudgie.plugins.budgie-testtime.Anchor" name="anchor">
             <summary>Window anchor of the desktop representation</summary>
