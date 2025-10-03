@@ -127,6 +127,7 @@ namespace BudgieTestTimeApplet {
         string[] anchors;
         string curr_anchor;
         CheckButton leftalign;
+        Gtk.FontButton testfontbutton;
         Gtk.FontButton timefontbutton;
         Gtk.FontButton serialfontbutton;
         Gtk.ColorButton testcolor;
