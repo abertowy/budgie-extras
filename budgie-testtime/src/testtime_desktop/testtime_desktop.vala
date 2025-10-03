@@ -198,9 +198,9 @@ namespace  TestTime {
             testlabel = new Label("");
             timelabel = new Label("");
             seriallabel = new Label("");
-            var image_01 = Gtk.Image.from_file("usr/share/pixmaps/03_cake_on.png");
-            var image_02 = Gtk.Image.from_file("usr/share/pixmaps/03_cake.png");
-            var image_03 = Gtk.Image.from_file("usr/share/pixmaps/03_cake.png");
+            var image_01 = new Gtk.Image.from_file("usr/share/pixmaps/03_cake_on.png");
+            var image_02 = new Gtk.Image.from_file("usr/share/pixmaps/03_cake.png");
+            var image_03 = new Gtk.Image.from_file("usr/share/pixmaps/03_cake.png");
             // position
             maingrid.attach(testlabel, 0, 0, 3, 1);
             maingrid.attach(timelabel, 0, 1, 3, 1);
