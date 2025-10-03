@@ -264,7 +264,7 @@ namespace BudgieTestTimeApplet {
             catch (Error e) {
             }
             Label[] boldones = {
-                time_header, date_header, general_header, position_header
+                time_header, general_header, position_header
             };
             foreach (Label l in boldones) {
                 l.get_style_context().add_class("st_header");
