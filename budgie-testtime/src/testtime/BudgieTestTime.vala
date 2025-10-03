@@ -286,7 +286,7 @@ namespace BudgieTestTimeApplet {
 
         private void set_anchor (ToggleButton button) {
             int n = 0;
-            string newanchor = "se";
+            string newanchor = "ne";
             foreach (ToggleButton b in anchorbuttons) {
                 if (b == button) {
                     newanchor = anchors[n];

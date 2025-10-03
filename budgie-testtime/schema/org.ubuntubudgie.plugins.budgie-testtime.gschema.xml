@@ -36,7 +36,7 @@
         <key enum="org.ubuntubudgie.plugins.budgie-testtime.Anchor" name="anchor">
             <summary>Window anchor of the desktop representation</summary>
             <description>Which corner should be pinned to the desktop. Window will expand on the opposite direction(s)</description>
-            <default>"nw"</default>
+            <default>"ne"</default>
         </key>
         <key type="i" name="xposition">
             <summary>X- position of the desktop window</summary>
