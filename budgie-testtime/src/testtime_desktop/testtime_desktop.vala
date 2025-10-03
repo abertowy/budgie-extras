@@ -198,30 +198,19 @@ namespace  TestTime {
             testlabel = new Label("");
             timelabel = new Label("");
             seriallabel = new Label("");
-            var image_01 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/01_portal_on.png");
-            var image_02 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/02_portal.png");
-            var image_03 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/03_portal_on.png");
-            var image_04 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/04_portal.png");
-            var image_05 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/05_portal_on.png");
-            var image_06 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/06_portal.png");
-            var image_07 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/07_portal_on.png");
-            var image_08 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/08_portal.png");
-            var image_09 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/09_portal_on.png");
-            var image_10 = new Gtk.Image.from_file("/usr/share/pixmaps/portal/10_portal.png");
             // position
             maingrid.attach(testlabel, 0, 0, 10, 1);
             maingrid.attach(timelabel, 0, 1, 10, 1);
             maingrid.attach(seriallabel, 0, 2, 10, 1);
-            maingrid.attach(image_01, 0, 3, 1, 1);
-            maingrid.attach(image_02, 1, 3, 1, 1);
-            maingrid.attach(image_03, 2, 3, 1, 1);
-            maingrid.attach(image_04, 3, 3, 1, 1);
-            maingrid.attach(image_05, 4, 3, 1, 1);
-            maingrid.attach(image_06, 5, 3, 1, 1);
-            maingrid.attach(image_07, 6, 3, 1, 1);
-            maingrid.attach(image_08, 7, 3, 1, 1);
-            maingrid.attach(image_09, 8, 3, 1, 1);
-            maingrid.attach(image_10, 9, 3, 1, 1);
+            // images
+            Gtk.Image[] images = new Gtk.Image[10];
+            for (int i=0; i < 10; i++) {
+                var original_pixbuf = new Gdk.Pixbuf.from_file(/usr/share/pixmaps/portal/ + "%02d".printf(i) + "_portal_on.png");
+                var scaled_pixbuf = original_pixbuf.scale_simple(48, 48, InterpType.BILINEAR);
+                images[i] = new Gtk.Image.from_pixbuf(scaled_pixbuf);
+                maingrid.attach(images[i], i, 3, 1, 1);
+            }
+
             this.add(maingrid);
             string[] bind = {
                 "leftalign", "xposition",
