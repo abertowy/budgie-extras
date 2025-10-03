@@ -36,7 +36,7 @@
         <key enum="org.ubuntubudgie.plugins.budgie-testtime.Anchor" name="anchor">
             <summary>Window anchor of the desktop representation</summary>
             <description>Which corner should be pinned to the desktop. Window will expand on the opposite direction(s)</description>
-            <default>"ne"</default>
+            <default>"nw"</default>
         </key>
         <key type="i" name="xposition">
             <summary>X- position of the desktop window</summary>
@@ -71,7 +71,7 @@
         <key type="b" name="draggable">
             <summary>draggable by Super + drag</summary>
             <description>The window can be dragged temporarily by Super + drag</description>
-            <default>true</default>
+            <default>false</default>
         </key>
     </schema>
 </schemalist>
