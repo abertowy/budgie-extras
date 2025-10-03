@@ -206,7 +206,7 @@ namespace  TestTime {
             Gtk.Image[] images = new Gtk.Image[10];
             for (int i=0; i < 10; i++) {
                 var original_pixbuf = new Gdk.Pixbuf.from_file("/usr/share/pixmaps/portal/" + "%02d".printf(i+1) + "_portal_on.png");
-                var scaled_pixbuf = original_pixbuf.scale_simple(48, 48, InterpType.BILINEAR);
+                var scaled_pixbuf = original_pixbuf.scale_simple(48, 48, Gdk.InterpType.BILINEAR);
                 images[i] = new Gtk.Image.from_pixbuf(scaled_pixbuf);
                 maingrid.attach(images[i], i, 3, 1, 1);
             }
