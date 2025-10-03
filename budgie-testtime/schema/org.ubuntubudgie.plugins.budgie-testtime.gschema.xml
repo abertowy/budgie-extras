@@ -71,7 +71,7 @@
         <key type="b" name="draggable">
             <summary>draggable by Super + drag</summary>
             <description>The window can be dragged temporarily by Super + drag</description>
-            <default>false</default>
+            <default>true</default>
         </key>
     </schema>
 </schemalist>
