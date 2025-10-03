@@ -13,12 +13,7 @@
             <description>Optional dateformat. Use string formatting conform https://valadoc.org/glib-2.0/GLib.DateTime.format.html</description>
             <default>""</default>
         </key>
-        <key type="s" name="datefontcolor">
-            <summary>Color of the displayed time</summary>
-            <description>Text color of the applet's desktop representation</description>
-            <default>"#FFFFFF"</default>
-        </key>
-        <key type="s" name="timefontcolor">
+        <key type="s" name="fontcolor">
             <summary>Color of the displayed time</summary>
             <description>Text color of the applet's desktop representation</description>
             <default>"#FFFFFF"</default>

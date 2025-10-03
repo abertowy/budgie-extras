@@ -129,8 +129,7 @@ namespace BudgieTestTimeApplet {
         CheckButton leftalign;
         Gtk.FontButton timefontbutton;
         Gtk.FontButton datefontbutton;
-        Gtk.ColorButton timecolor;
-        Gtk.ColorButton datecolor;
+        Gtk.ColorButton testcolor;
         Gtk.SpinButton linespacing;
         Label draghint;
         string dragposition;
@@ -225,8 +224,8 @@ namespace BudgieTestTimeApplet {
             this.attach(timebox, 0, 7, 10, 1);
             timefontbutton = new FontButton();
             timebox.pack_start(timefontbutton, false, false, 0);
-            timecolor = new Gtk.ColorButton();
-            timebox.pack_start(timecolor, false, false, 0);
+            testcolor = new Gtk.ColorButton();
+            timebox.pack_start(testcolor, false, false, 0);
             var spacelabel3 = new Gtk.Label("");
             this.attach(spacelabel3, 1, 8, 1, 1);
             // date font settings
@@ -237,8 +236,6 @@ namespace BudgieTestTimeApplet {
             this.attach(datebox, 0, 11, 10, 1);
             datefontbutton = new FontButton();
             datebox.pack_start(datefontbutton, false, false, 0);
-            datecolor = new Gtk.ColorButton();
-            datebox.pack_start(datecolor, false, false, 0);
             var spacelabel5 = new Gtk.Label("");
             this.attach(spacelabel5, 1, 12, 1, 1);
             // miscellaneous section
@@ -327,8 +324,7 @@ namespace BudgieTestTimeApplet {
             // fetch current settings, set widgets
             set_initiallinespacing(linespacing, "linespacing");
             set_initialdrag();
-            set_initialcolor(timecolor, "timefontcolor");
-            set_initialcolor(datecolor, "datefontcolor");
+            set_initialcolor(testcolor, "fontcolor");
             set_initialcheck(leftalign, "leftalign");
             set_initialfont(timefontbutton, "timefont");
             set_initialfont(datefontbutton, "datefont");
@@ -377,11 +373,8 @@ namespace BudgieTestTimeApplet {
                 set_newlinespacing(linespacing, "linespacing");
             });
             dragbutton.clicked.connect(toggle_drag);
-            timecolor.color_set.connect (() => {
-                set_hexcolor(timecolor, "timefontcolor");
-            });
-            datecolor.color_set.connect (() => {
-                set_hexcolor(datecolor, "datefontcolor");
+            testcolor.color_set.connect (() => {
+                set_hexcolor(testcolor, "fontcolor");
             });
             timefontbutton.font_set.connect (() => {
                 set_newfont(timefontbutton, "timefont");
@@ -492,9 +485,8 @@ namespace BudgieTestTimeApplet {
                 b.set_sensitive(active);
             }
             datefontbutton.set_sensitive(active);
-            datecolor.set_sensitive(active);
             timefontbutton.set_sensitive(active);
-            timecolor.set_sensitive(active);
+            testcolor.set_sensitive(active);
             leftalign.set_sensitive(active);
             linespacing.set_sensitive(active);
             spinlabel.set_sensitive(active);

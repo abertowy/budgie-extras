@@ -32,8 +32,7 @@ so:
 
 namespace  TestTime {
 
-    private string timefontcolor;
-    private string datefontcolor;
+    private string fontcolor;
     private int linespacing;
     private Label timelabel;
     private Label datelabel;
@@ -46,8 +45,7 @@ namespace  TestTime {
 
         public void get_appearance (Gdk.Screen screen) {
             // get font properties: color
-            timefontcolor = testtime_settings.get_string("timefontcolor");
-            datefontcolor = testtime_settings.get_string("datefontcolor");
+            fontcolor = testtime_settings.get_string("fontcolor");
             // get font properties: font & size
             string timeprops = testtime_settings.get_string("timefont");
             string dateprops = testtime_settings.get_string("datefont");
@@ -89,12 +87,12 @@ namespace  TestTime {
         ) {
             timelabel.set_markup (
                 "<span foreground=\"" +
-                timefontcolor + "\">" + currtime +
+                fontcolor + "\">" + currtime +
                 "</span>"
             );
             datelabel.set_markup (
                 "<span foreground=\"" +
-                datefontcolor + "\">" + currdate +
+                fontcolor + "\">" + currdate +
                 "</span>"
             );
         }
@@ -187,8 +185,8 @@ namespace  TestTime {
             this.add(maingrid);
             string[] bind = {
                 "leftalign", "xposition",
-                "yposition", "linespacing", "timefontcolor", "linespacing",
-                "datefontcolor", "timefont", "datefont"
+                "yposition", "linespacing", "fontcolor", "linespacing",
+                "timefont", "datefont"
             };
             foreach (string s in bind) {
                 testtime_settings.changed[s].connect(update_appearance);
