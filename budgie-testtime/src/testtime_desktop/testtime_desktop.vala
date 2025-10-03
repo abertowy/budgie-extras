@@ -199,13 +199,36 @@ namespace  TestTime {
             timelabel = new Label("");
             seriallabel = new Label("");
             // position
-            maingrid.attach(testlabel, 0, 0, 10, 1);
-            maingrid.attach(timelabel, 0, 1, 10, 1);
-            maingrid.attach(seriallabel, 0, 2, 10, 1);
+            maingrid.attach(testlabel, 0, 0, 12, 1);
+            maingrid.attach(timelabel, 0, 1, 12, 1);
+            maingrid.attach(seriallabel, 0, 2, 12, 1);
             // images
-            Gtk.Image[] images = new Gtk.Image[10];
-            for (int i=0; i < 10; i++) {
-                var original_pixbuf = new Gdk.Pixbuf.from_file("/usr/share/pixmaps/portal/" + "%02d".printf(i+1) + "_portal_on.png");
+            int count = 0;
+            int[] pics = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            string[] pics_on = new string[12];
+            while (count < 12) {
+                int curr = GLib.Random.int_range(1, 26);
+                bool exists = false;
+                for (int i=0; i < count; i++) {
+                    if (pics[i] == curr) {
+                        exists = true;
+                        break;
+                    }
+                }
+                if (!exists) {
+                    pics[count] = curr;
+                    if (GLib.Random.boolean()) {
+                        pics_on[count] = "_on.png";
+                    }
+                    else {
+                        pics_on[count] = ".png";
+                    }
+                    count++;
+                }
+            }
+            Gtk.Image[] images = new Gtk.Image[12];
+            for (int i=0; i < 12; i++) {
+                var original_pixbuf = new Gdk.Pixbuf.from_file("/usr/share/pixmaps/portal/" + "%02d".printf(pics[i]) + "_portal" + pics_on[i]);
                 var scaled_pixbuf = original_pixbuf.scale_simple(48, 48, Gdk.InterpType.BILINEAR);
                 images[i] = new Gtk.Image.from_pixbuf(scaled_pixbuf);
                 maingrid.attach(images[i], i, 3, 1, 1);
