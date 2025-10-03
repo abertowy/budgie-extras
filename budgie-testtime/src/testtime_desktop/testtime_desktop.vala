@@ -163,8 +163,7 @@ namespace  TestTime {
         }
 
         public TimeWindow (string uuid) {
-            var random = new GLib.Random();
-            test_chamber = "Test chamber #" + "%03d".printf(random.int_range(1, 501));
+            test_chamber = "Test chamber #" + "%03d".printf(GLib.Random.int_range(1, 501));
             serial = "SERIAL NO " + uuid;
             GLib.Timeout.add_seconds(1, ()=> {
                 watchapplet(uuid);
