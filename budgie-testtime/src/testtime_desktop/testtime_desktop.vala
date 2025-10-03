@@ -163,7 +163,7 @@ namespace  TestTime {
         }
 
         public TimeWindow (string uuid) {
-            test_chamber = "Test chamber #" + "%03d".printf(GLib.Random.int_range(1, 501));
+            test_chamber = "Test Chamber #" + "%03d".printf(GLib.Random.int_range(1, 501));
             serial = "SERIAL NO " + uuid;
             GLib.Timeout.add_seconds(1, ()=> {
                 watchapplet(uuid);
@@ -379,12 +379,13 @@ namespace  TestTime {
             int mins = newtime.get_minute();
             int hrs = newtime.get_hour();
             int newhrs = hrs;
-            string add = " ago";
+            string prefix = "Testing initiated ";
+            string suffix = " Hours ";
+            string ending = " Minutes ago";
             string showmins = fix_mins(mins);
             // hrs to double digits
             string hrs_display = fix_mins(newhrs);
-            string prefix = "Testing initiated ";
-            return @"$prefix$hrs_display:$showmins$add";
+            return @"$prefix$hrs_display$suffix$showmins$ending";
         }
 
         private string get_dateformat () {
