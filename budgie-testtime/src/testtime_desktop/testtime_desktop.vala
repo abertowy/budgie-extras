@@ -48,14 +48,14 @@ namespace  TestTime {
             fontcolor = testtime_settings.get_string("fontcolor");
             // get font properties: font & size
             string timeprops = testtime_settings.get_string("timefont");
-            string dateprops = testtime_settings.get_string("datefont");
+            string dateprops = testtime_settings.get_string("serialfont");
             // set fonts
             var timefont = new Pango.FontDescription().from_string(timeprops);
-            var datefont = new Pango.FontDescription().from_string(dateprops);
+            var serialfont = new Pango.FontDescription().from_string(dateprops);
             Pango.Context t = timelabel.get_pango_context();
             Pango.Context d = datelabel.get_pango_context();
             t.set_font_description(timefont);
-            d.set_font_description(datefont);
+            d.set_font_description(serialfont);
             timelabel.set_margin_end (10);
             get_spacing(screen);
         }
@@ -186,7 +186,7 @@ namespace  TestTime {
             string[] bind = {
                 "leftalign", "xposition",
                 "yposition", "linespacing", "fontcolor", "linespacing",
-                "timefont", "datefont"
+                "timefont", "serialfont"
             };
             foreach (string s in bind) {
                 testtime_settings.changed[s].connect(update_appearance);

@@ -18,7 +18,7 @@
             <description>Text color of the applet's desktop representation</description>
             <default>"#FFFFFF"</default>
         </key>
-        <key type="s" name="datefont">
+        <key type="s" name="serialfont">
             <summary>Font and fontstyle for desktop date</summary>
             <description>The font and fontstyle, showing on the desktop's date representation</description>
             <default>"Sans 20"</default>
