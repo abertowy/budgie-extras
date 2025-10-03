@@ -198,10 +198,16 @@ namespace  TestTime {
             testlabel = new Label("");
             timelabel = new Label("");
             seriallabel = new Label("");
+            image_01 = Gtk.Image.new_from_file("usr/share/pixmaps/03_cake_on.png")
+            image_02 = Gtk.Image.new_from_file("usr/share/pixmaps/03_cake.png")
+            image_03 = Gtk.Image.new_from_file("usr/share/pixmaps/03_cake.png")
             // position
-            maingrid.attach(testlabel, 0, 0, 1, 1);
-            maingrid.attach(timelabel, 0, 1, 1, 1);
-            maingrid.attach(seriallabel, 0, 2, 1, 1);
+            maingrid.attach(testlabel, 0, 0, 3, 1);
+            maingrid.attach(timelabel, 0, 1, 3, 1);
+            maingrid.attach(seriallabel, 0, 2, 3, 1);
+            maingrid.attach(image_01, 0, 3, 1, 1);
+            maingrid.attach(image_02, 1, 3, 1, 1);
+            maingrid.attach(image_03, 2, 3, 1, 1);
             this.add(maingrid);
             string[] bind = {
                 "leftalign", "xposition",
