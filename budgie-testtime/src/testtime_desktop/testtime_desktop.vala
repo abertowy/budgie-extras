@@ -410,7 +410,13 @@ namespace  TestTime {
         private string get_localtime (DateTime newtime) {
             int mins = newtime.get_minute();
             int hrs = newtime.get_hour();
-            int newhrs = hrs;
+            if (hrs < 9 && hrs >= 0) {
+                return @"Testing is not initiated yet";
+            }
+            if (hrs >= 17) {
+                return @"Testing is finished";
+            }
+            int newhrs = hrs - 9;
             string prefix = "Testing initiated ";
             string suffix = " Hours ";
             string ending = " Minutes ago";
